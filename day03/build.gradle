@@ -1,0 +1,54 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.koreait'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies { //버전에 맞는 라이브러리 등록 (maven과 같음)
+    /*
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    //DB jpa 컴파일 설치
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //오라클 디펜던시
+    implementation("com.oracle.database.jdbc.debug:ojdbc8-observability-debug:21.1.0.0")
+
+
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    */
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok' //롬복
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //jpa
+    annotationProcessor 'org.projectlombok:lombok' //롬복 사용
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+
+    // 클라우드 서버 연결에 필요한 의존성 라이브러리
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+    implementation 'com.oracle.ojdbc:ucp'
+    implementation 'com.oracle.database.security:oraclepki'
+    implementation 'com.oracle.database.security:osdt_core'
+    implementation 'com.oracle.database.security:osdt_cert'
+
+}
+
+test {
+    useJUnitPlatform()
+}
